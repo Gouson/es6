@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for of</title>
+</head>
+
+<body>
+    <ul>
+        <li>school</li>
+        <li>gym</li>
+        <li>library</li>
+    </ul>
+    <script>
+        const fruits = ['apple', 'banana', 'orange', 'mango']
+        //for循环 繁琐
+        //forEach  不能终止或跳过
+        //for in 循环 是属性名 而不是属性值   遍历的是可枚举属性
+
+        //for of每次循环的事属性值  不会遍历数组上的非数值属性  可以终止 break 和 跳过continue（不支持对象）
+        for (const [index, fruit] of fruits.entries()) {
+            console.log(`${fruit} is rank ${index} in my favorite fruits`)
+        }
+
+        //使用示例
+        function sum() {
+            let total=0;
+            for (const num of arguments) {
+                total +=num
+            }
+            return total
+        }
+        let a=sum(10,23,324,435,34,12)
+        console.log(a)  
+
+
+        let name='laravist'
+        for (const char of name) {
+            console.log(char)
+        }
+        
+
+        const list=document.querySelectorAll('li')
+        for (let li of list) {
+            li.addEventListener('click',function(){
+                this.classList.toggle('completed')
+            })
+        }
+    </script>
+</body>
+<style>
+    li{
+        cursor: pointer; 
+    }
+    li:hover{
+        background-color: gary;
+    }
+    .completed{
+        text-decoration: line-through;
+    }
+</style>
+</html>

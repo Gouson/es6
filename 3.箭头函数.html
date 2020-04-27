@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>箭头函数</title>
+</head>
+
+<body>
+    <p>1.简明的语法</p>
+    <p>2.隐式返回</p>
+    <p>显式返回就是return 后跟的返回值 ，隐式返回就是删掉return 删掉花括号，直接为返回值</p>
+    <p>3.不绑定this</p>
+    <p>普通函数内的this指向window（对象内属性的this指向对象）；箭头函数没有自己的this值，继承自自己的父作用域,是词法作用域，在定义的时候就被指定，不会随调用方法改变</p>
+</body>
+<script>
+    const numbers = [1, 2, 3, 4, 5, 6]
+
+    const double = numbers.map(function (number) {
+        return number * 2
+    })
+    //删掉function关键字，加上一个胖箭头，没有参数加括号，一个参数可选择（加不加括号），多个参数逗号分隔
+    //都是匿名函数
+    const double2 = numbers.map((number) =>
+        number * 2
+    )
+
+
+    console.log(double2)
+
+    //this
+    const Jelly = {
+        name: 'jelly',
+        hobbies: ['coding', 'sleeping', 'reading'],
+        printHobbies: function () {
+            //console.log(this)//Jelly
+            var self = this;
+            this.hobbies.map(function (hobby) {
+                //console.log(this)//Window
+                console.log(`${self.name} loves ${hobby}`)
+            })
+        }
+    }
+    
+    const Tom = {
+        name: 'tom',
+        hobbies: ['fuck', 'eat', 'drink'],
+        printHobbies: function () {
+            this.hobbies.map(hobby => {
+                //这个this指向Tom
+                console.log(`${this.name} loves ${hobby}`)
+            })
+        }
+    }
+
+    Jelly.printHobbies()
+    Tom.printHobbies()
+</script>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签模板 Tageed Template Strings</title>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        function highlight(strings, ...values) {
+            const hightlighted = values.map(value => `<span class='highlight'>${value}</span>`)
+            let str = '';
+            // strings.forEach((string, i) => {
+            //     str += `${string}${hightlighted[i] || ''}`
+            // })
+           str= strings.reduce((prev,cur,i)=> `${prev}${cur}${hightlighted[i]||''}`,'')
+            return str
+        }
+        const user = 'mary'
+        const topic = 'learn to use markdown'
+        const sentence = highlight `${user} has commented on your topic ${topic}.`
+        document.body.innerHTML=sentence
+    </script>
+</body>
+<style>
+    .highlight {
+        padding:2px 5px;
+        color: white;
+        background-color: #00adb5;
+    }
+</style>
+
+</html>

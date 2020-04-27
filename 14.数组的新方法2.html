@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array新方法</title>
+</head>
+
+<body>
+    <ul>
+        <li>school</li>
+        <li>gym</li>
+        <li>library</li>
+    </ul>
+    <script>
+        const inventory = [{
+                name: 'apples',
+                quantity: 2
+            },
+            {
+                name: 'bananas',
+                quantity: 0
+            },
+            {
+                name: 'cherries',
+                quantity: 5
+            }
+        ]
+
+        //.find() 找到第一个符合要求的元素
+        const bananas = inventory.find(fruit =>
+            // if(fruit.name==='bananas'){
+            //     return true
+            // }
+            // return false
+            fruit.name === 'bananas')
+        //.findIndex() 找到第一个符合要求的元素的下标
+        const bananasIndex = inventory.findIndex(fruit =>
+            fruit.name === 'bananas'
+        )
+        //.some() 第一个满足测试函数 返回true 停止后面的执行
+        const isEnough = inventory.some(fruit =>
+            fruit.quantity > 0
+        )
+        //.every() 只有当所有元素逗符合测试元素 才返回true 否则遇到第一个false 就会立即返回
+        const everyIsEnough = inventory.every(fruit =>
+            fruit.quantity > 0
+        )
+    </script>
+</body>
+
+</html>

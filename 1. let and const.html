@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let and const</title>
+</head>
+
+<body>
+    <p>1.var 可以重复赋值,var是function scope</p>
+    <p>2.let 和 const不可以重复赋值,是block scope 块级作用域</p>
+
+    <p>3.let可以重新赋值，const不能重新赋值,但是const声明的对象属性可以改变，如果不想被改变可以使用Object.freeze(person),const声明就要赋值</p>
+
+    <p>4.let和const声明的变量不在windows中</p>
+
+</body>
+<script>
+    var price = 200
+    var count = 10
+    // function getP() {
+    //     var price = 100
+    //     console.log(price)
+    // }
+    // console.log(price)
+
+    if (count > 5) {
+        let disconut = price * 0.6
+        console.log(`this discount is ${disconut}`)
+    }
+
+    const person={
+        name:'jerll',
+        age:20
+    }
+    //冻结对象，阻止更改
+    Object.freeze(person)
+
+    {
+        const name='jelly'
+    }
+
+    for(var i=0;i<10;i++){
+        console.log(i)//0 1 2 ...
+        setTimeout(() => {
+            console.log(`i:${i}`)//10  10 10 10 10 ...
+        }, 1000);
+    }
+
+    for(let i=0;i<10;i++){
+        setTimeout(() => {
+            console.log(`i:${i}`)//0 1 2 ...
+        }, 1000);
+    }
+    
+</script>
+</html>

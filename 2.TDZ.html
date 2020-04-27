@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDZ</title>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log(color)//Uncaught ReferenceError: color is not defined
+    var color ='red'
+
+    //由于变量提升，上面的代码实际上是这样的
+    var color1
+    console.log(color1)
+    color1='red'
+
+    //使用let  临时性死区 temporal dead zone     （const同理）
+    console.log(color2)//Uncaught ReferenceError: Cannot access 'color2' before initialization
+    let color2 ='red'
+</script>
+</html>

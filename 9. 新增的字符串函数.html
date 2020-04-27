@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增字符串函数</title>
+</head>
+<body>
+    <script>
+        const id="51030019800730366x"
+        const test="I love Laravist."
+
+        //.startsWith()
+        console.log(id.startsWith('51'))
+        console.log(id.startsWith('1980',6))
+        //endsWith()
+        console.log(id.endsWith('x'))
+        console.log(test.endsWith('love',6))
+
+
+        //includes
+        console.log(test.includes('Laravist'))
+        console.log(test.includes('Laravist',10))
+
+        //repeat()
+        console.log('哈'.repeat(10))
+        console.log(`${'='.repeat(5)} ${test} ${'='.repeat(5)}`)
+
+
+        //右对齐
+        function padder(string,length=25){
+            return `${' '.repeat(Math.max(length-string.length,0))}${string}`
+        }
+        console.log(padder(id))
+        console.log(padder(test))
+    </script>
+</body>
+</html>

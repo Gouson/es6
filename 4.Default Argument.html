@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default Argument 参数默认值</title>
+</head>
+<body>
+    <p> </p>
+</body>
+<script>
+    function multiply(a = 5,b =3){
+        // a=a||5
+        // b=b||3
+        return a * b
+    }
+    console.log(multiply())//15
+    console.log(multiply(3))//9 
+    console.log(multiply(undefined,2))//10
+</script>
+</html>

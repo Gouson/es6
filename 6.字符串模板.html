@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串模板</title>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        const person = 'gouson'
+        const age = 5
+        const sentence = `${person} is ${age *5 } years old`
+        console.log(sentence)
+        const template = `
+        <div class='greet'>
+            <p>hello</p>
+        </div>
+        `.trim()
+        console.log(template)
+
+
+        //示例
+        const Jelly = {
+            name: 'jelly',
+            date: '2020-04-13',
+            todos: [{
+                    name: 'go to store',
+                    completed: false
+                },
+                {
+                    name: 'watch movie',
+                    completed: true
+                },
+                {
+                    name: 'running',
+                    completed: false
+                }
+            ]
+        }
+
+        const template1 = `
+            <ul>
+            ${Jelly.todos.map(todo=>`<li>
+            ${todo.name} ${todo.completed?'✅':'❎'}
+            </li>`).join('')}
+            </ul>
+        `
+        //抽离render方法
+        function renderTodos(todos) {
+            return (
+                `
+            <ul>
+            ${todos.map(todo=>`<li>
+            ${todo.name} ${todo.completed?'✅':'❎'}
+            </li>`).join('')}
+            </ul>
+        `
+            )
+        }
+        const template2 = `
+           <div>
+            <div>${Jelly.name}</div>
+            <div>${renderTodos(Jelly.todos)}</div>
+            <div> ${Jelly.date}</div>
+           </div>
+        `
+        document.body.innerHTML = template2
+    </script>
+</body>
+
+</html>

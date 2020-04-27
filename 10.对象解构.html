@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象结构</title>
+</head>
+<body>
+    <script>
+        const Tom={
+            name:'tom',
+            age:'25',
+            family:{
+                mother:'Norah Jones',
+                father:'Richard Jones',
+                brother:'Howard Jones'
+            }
+        }
+
+
+        const {name,age}=Tom;
+        console.log(name,age)
+
+
+
+        const{father:f,mother:m,brother:b,sister='have no sister'}=Tom.family
+        console.log(f,m,b,sister)
+
+        
+    </script>
+</body>
+</html>

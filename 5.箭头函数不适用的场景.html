@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数不适用的场景</title>
+</head>
+
+<body>
+    <p>1.作为构造函数，一个方法需要绑定到对象</p>
+    <p>2.当你真的需要this</p>
+    <button class="zoom">button</button>
+    <p>3.当你需要arguments参数</p>
+    <script>
+        //1
+        //   const Person=(name,points)=>{
+        //       this.name=name
+        //       this.points=points
+        //   }
+
+        //const Jelly=new Person('jelly',5)//person is not a constructor
+        const Person = function (name, points) {
+            this.name = name
+            this.points = points
+        }
+        const Jelly = new Person('jelly', 5)
+        Person.prototype.updatePoints = function () {
+            this.points++
+            console.log(this.points)
+        }
+
+
+        //2
+        const button = document.querySelector('.zoom')
+        button.addEventListener('click', function () {
+            this.classList.add('in')
+            setTimeout(() => {
+                this.classList.remove('in')
+            }, 2000);
+        })
+
+
+        //3
+        const Sum = function(){
+            return Array.from(arguments).reduce(
+                (prevSum, value) => prevSum + value, 0
+            )
+        }
+    </script>
+</body>
+<style>
+    .in {
+        background-color: red;
+    }
+</style>
+
+</html>
