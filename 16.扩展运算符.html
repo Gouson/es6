@@ -7,7 +7,7 @@
     <title>Spread Operator</title>
 </head>
 <style>
-    body{
+    body {
         background-color: orange;
         display: flex;
         justify-content: center;
@@ -18,22 +18,25 @@
         text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
 
     }
-    .heading span{
+
+    .heading span {
         display: inline-block;
-        cursor:pointer;
+        cursor: pointer;
         transition: transform 0.25s;
     }
-    .heading span:hover{
-        
+
+    .heading span:hover {
+
         transform: translateY(-20px) rotate(10deg) scale(2);
     }
 </style>
+
 <body>
     <h2 class="heading">LARAVIST!</h2>
     <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>school</li>
+        <li>gym</li>
+        <li>library</li>
     </ul>
     <script>
         const youngers = ['George', 'John', 'Thomas']
@@ -51,13 +54,36 @@
 
         //练习
         const heading = document.querySelector('.heading')
-        heading.innerHTML=wrapWithSpan( heading.textContent)
+        heading.innerHTML = wrapWithSpan(heading.textContent)
+
         function wrapWithSpan(word) {
-            return [...word].map(letter=> `<span>${letter}</span>`).join('')
+            return [...word].map(letter => `<span>${letter}</span>`).join('')
         }
 
 
-        //练习
+        //练习 替换array.from
+        //1.将nodelist转为数组
+        const todos = [...document.querySelectorAll('.li')]
+        const names = todos.map(todo => todo.textContent)
+        //console.log(names)
+        const favorites={
+            color:['yellow','blue'],
+            fruits:['banana','mongo']
+        }
+        //2.拼接
+        const shoppingList=['milk','sweets',...favorites.fruits]
+        console.log(shoppingList)
+        //3.删除  展开数组内的数组元素 (slice 返回数组)
+        const todos2=[
+            {id:1,name:'go to store',completed:false},
+            {id:2,name:'watch TV',completed:true},
+            {id:3,name:'go shopping',completed:false}
+        ]
+
+        const id=2
+        const todoIndex =todos2.findIndex(todo=> todo.id === id)
+        const newTodos=[...todos2.slice(0,todoIndex),...todos2.slice(todoIndex+1)]
+        console.log(newTodos)
     </script>
 </body>
 
