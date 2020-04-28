@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Objec Literal Upgrade</title>
+</head>
+<body>
+    <script>
+        const name='Laravist'
+        const age=2
+        const brithday='2015-09'
+
+        const Laravist={
+            //对象属性名简写
+            name,age,brithday,
+            //对象方法的简写
+            greet(){
+                alert(`Hello ${this.name}`)
+            }
+        }
+        console.log(Laravist)
+
+        //es6 计算属性
+
+        let id=0;
+        const userIDs={
+        [`user-${++id}`]:id,
+        [`user-${++id}`]:id,
+        [`user-${++id}`]:id
+        }
+
+        //SHIFT
+        const keys=['name','age','birthday']
+        const values=['Larvist',2,'2015-09']
+        const Larvist={
+            [keys.shift()]:values.shift(),
+            [keys.shift()]:values.shift(),
+            [keys.shift()]:values.shift()
+        }
+        console.log(Larvist)
+    </script>
+</body>
+</html>
