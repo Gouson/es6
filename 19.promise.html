@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>promise</title>
+    <title>promise Intro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
 </head>
 <body>
-    
+    <script>
+        let user
+
+        //fetch all users
+        $.get('https://api.github.com/users',data=>{
+            console.log('fetched all users');
+            user=data[0].login
+        })
+    </script>
 </body>
 </html>
