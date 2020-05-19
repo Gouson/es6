@@ -1,21 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>promise Intro</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
-<body>   
-    <script>
-        let user
 
+<body>
+    <script>
         //fetch all users
-        $.get('https://api.github.com/users',data=>{
-            console.log('fetched all users');
-            user=data[0].login
+        // $.get('https://api.github.com/users', data => {
+        //     console.log('fetched all users');
+        //     user = data[0].login
+
+        //     //fetch the first users`s repos
+        //     $.get(`https://api.github.com/users/${user}/repos`, data => {
+        //         console.log(`fetched user repos`)
+        //         console.log(data)
+        //     })
+        // })
+
+        //promise
+        const usersPromise = axios.get(`https://api.github.com/user`)
+        usersPromise.then(response => {
+            username = response.data[0].login
+            return axios.get(`https://api.github.com/users/${username}/repos`)
+        }).then(reponse => {
+            console.log(reponse.data)
+        }).catch(err => {
+            console.error(err)
+        })
+
+
+        //编写自己的promise
+
+        const p = new Promise((reslove, reject) => {
+            // reslove("laravist is awesome!")
+            reject(Error('laravist is\'t awesome!'))
+        })
+        p.then(data => {
+            console.log(data)
+        }).catch(err => {
+            console.log(err)
+        })
+
+
+        //promise example
+        const repos = [{
+                name: 'grit',
+                owner: 'mojombo',
+                description: 'Grit is no longer maintained',
+                id: 1
+            },
+            {
+                name: 'grit2',
+                owner: 'mojombo2',
+                description: 'Grit is no longer maintained2',
+                id: 2
+            },
+            {
+                name: 'grit3',
+                owner: 'mojombo3',
+                description: 'Grit is no longer maintained3',
+                id: 3
+            }
+        ]
+
+        const owners = [{
+                name: 'mojombo1',
+                location: 'San Francisco',
+                followers: 123
+            },
+            {
+                name: 'mojombo2',
+                location: 'San Francisco2',
+                followers: 456
+            },
+            {
+                name: 'mojombo3',
+                location: 'San Francisco3',
+                followers: 789
+            }
+        ]
+
+        function getRepoById(id) {
+            return new Promise((reslove, reject) => {
+                setTimeout(() => {
+                    const repo = repos.find(repo => {
+                        return repo.id === id
+                    })
+                    if (repo) {
+                        reslove(repo)
+                    } else {
+                        reject(Error('no repo found!'))
+                    }
+                }, 2000);
+            })
+        }
+
+        function comboundOwner(repo) {
+            return new Promise((reslove, reject) => {
+                const owner = owners.find(owner => {
+                    return owner.name === repo.owner
+                })
+                if(owner){
+                    reslove(repo)
+                }else{
+                    reject(Error(`can not found!`))
+                }
+            })
+        }
+
+        getRepoById(1).then(repo => {
+           return  comboundOwner(repo)
+        }).then(repo=>{
+            console.log(repo)
+        })
+        .catch(err=>{
+            console.log(err)
         })
     </script>
 </body>
+
 </html>
