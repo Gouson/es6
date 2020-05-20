@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多个promise</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        const usersPromise = new Promise((reslove, reject) => {
+            setTimeout(() => {
+                reslove(['mojombo', 'vanpelt', 'wycats'])
+            }, 2000);
+        })
+
+        const moviePromise = new Promise((reslove, reject) => {
+            setTimeout(() => {
+                reslove({name:'极速车王',rating:9.2,year:2019})
+                // reject(Error('no movie'))
+            }, 500);
+        })
+
+        // Promise.all([usersPromise,moviePromise]).then(res=>{//all 所有promise全部执行完毕后 返回结果
+        Promise.race([usersPromise, moviePromise]).then(res => {//race  状态由第一个返回的promise决定
+            // const [user, movie] = res
+            // console.log(user, movie)
+            console.log(res)
+        }).catch(err => {
+            console.error(err)
+        })
+    </script>
+</body>
+
+</html>

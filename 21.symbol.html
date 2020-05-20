@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Symbol</title>
+</head>
+
+<body>
+    <script>
+        //新的数据类型 symblol 唯一标识 
+
+        const peter = Symbol('peter') //可以传入描述
+        const student = Symbol('student')
+        //解决对象属性明明冲突的问题   但是这些属性 不能遍历
+        const classRoom = {
+            [Symbol('Lily')]: {
+                grade: 60,
+                gender: 'female'
+            },
+            [Symbol('Mina')]: {
+                grade: 80,
+                gender: 'female'
+            },
+            [Symbol('Mina')]: {
+                grade: 90,
+                gender: 'female'
+            }
+        }
+
+        for (const key in classRoom) {
+            console.log(key)//
+        }
+        //如何获取symbol
+        const syms=Object.getOwnPropertySymbols(classRoom).map(sym=>{
+            return classRoom[sym]//用方括号表示 否则会变成字符串
+        })
+        console.log(syms)
+    </script>
+</body>
+
+</html>
