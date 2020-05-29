@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型继承回顾</title>
+</head>
+
+<body>
+    <script>
+        // function User(name, email) {
+        //     this.name = name
+        //     this.email = email
+        // }
+        // User.prototype.info = function () {
+        //     console.log(`i am ${this.name}`)
+        // }
+
+
+        //class
+        class User {
+            constructor(name, email) {
+                this.name = name
+                this.email = email
+            }
+
+            info() {
+                console.log(`i am ${this.name}`)
+            }
+
+            //静态方法  只能咋原型对象调用 不能在实例调用
+            static description() {
+                console.log(`i am a user of codecasts.com`)
+            }
+
+            set github(value) {
+                this.githubName = value
+            }
+            get github() {
+                return `https://github.com/${this.githubName}`
+            }
+        }
+        const gouson = new User('gouson', 'gaokx36@gmail.com');
+
+        const laravist = new User('laravist', 'laravist@gmail.com');
+
+
+        //继承
+        class Animal {
+            constructor(name) {
+                this.name = name
+                this.belly = []
+            }
+
+            eat(food){
+                this.belly.push(food)
+            }
+
+            speak(){
+                console.log(`i am ${this.name}`)
+            }
+
+        }
+
+        class Dog extends Animal{
+            constructor(name,age){
+                super(name)
+                this.age=age
+            }
+
+            bark(){
+                console.log('barl bark')
+            }
+
+            //重写覆盖
+            // speak(){
+            //     console.log(`bark bark!i am ${this.name}`)
+            // }
+        }
+
+        const luck=new Dog('lucky',2)
+    </script>
+</body>
+
+</html>
