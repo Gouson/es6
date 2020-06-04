@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iterator 遍历器</title>
+</head>
+
+<body>
+    <script>
+        Array.prototype.values = function () {
+            let i = 0
+            let items = this
+            return {
+                next() {
+                    const done = i >= items.length;
+                    const value = done ? undefined : items[i++]
+                    return {
+                        value,
+                        done
+                    }
+
+                }
+            }
+        }
+        const colors = ['red', 'green', 'blue']
+        for (const color of colors) {
+            console.log(color)
+        }
+
+        const iterator = colors[Symbol.iterator]()
+        console.log(iterator)
+    </script>
+</body>
+
+</html>

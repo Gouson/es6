@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="map-button-group">
+        <div onclick="addChromatogram()" class="active">土壤湿度</div>
+        <div onclick="addChromatogram()">光照指数</div>
+    </div>
+</body>
+<script>
+   
+</script>
+<style>
+    .map-button-group {
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        padding: 10px 16px;
+        z-index: 1;
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgba(41, 46, 52, .8);
+        color: #fff;
+        border-radius: 6px;
+        font-weight: 700;
+    }
+
+    .map-button-group div {
+        padding: 5px;
+
+    }
+
+    .active {
+        border-radius: 5px;
+        background: -webkit-gradient(linear, left top, left bottom, from(#4b76e6), to(#6f9aef));
+        background: linear-gradient(180deg, #4b76e6, #6f9aef);
+    }
+</style>
+
+</html>
