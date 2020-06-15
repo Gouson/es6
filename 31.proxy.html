@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy</title>
+</head>
+
+<body>
+    <script>
+        const person = {
+            name: 'laravist',
+            age: 2000
+        }
+        const personProxy = new Proxy(person, {
+            get(target, key) {
+                console.log('someone ask for', target, key)
+                return target[key].toUpperCase()
+            },
+
+            set(target, key, value) {
+                if (typeof value === 'string') {
+                    target[key] = value.trim()
+                }
+            }
+        })
+
+        personProxy.name = 'codecast'
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator 生成器</title>
+</head>
+
+<body>
+    <script>
+        function* listColors() {
+            // yield 'red';
+            // yield 'green';
+            // yield 'blue';
+            let i = 0;
+            yield i;
+            i++;
+            yield i;
+            i++;
+            yield i;
+        }
+        const colors = listColors()
+
+        const repos = [{
+            name: 1
+        }, {
+            name: 2
+        }, {
+            name: 3
+        }]
+
+        function* loop(arr) {
+            console.log(repos)
+            for (const repo of arr) {
+                yield repo
+            }
+        }
+        const repoGen = loop(repos)
+    </script>
+</body>
+
+</html>
