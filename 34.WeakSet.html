@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeakSet</title>
+</head>
+
+<body>
+    <script>
+        let jelly = {
+            name: 'jelly',
+            age: 20
+        }
+        let mary = {
+            name: 'mary',
+            age: 19
+        }
+        //1.元素只能是对象  2.不能通过for of/foreach 循环 3.没有clear方法
+
+        const weakPeople = new WeakSet([jelly, mary])
+        // const peopleArray = [jelly, mary]
+        // console.log(peopleArray)
+        console.log(weakPeople)
+
+        mary = null
+
+        // console.log(peopleArray)
+        console.log(weakPeople)
+    </script>
+</body>
+
+</html>

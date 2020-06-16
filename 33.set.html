@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set</title>
+</head>
+
+<body>
+    <script>
+        const colors = new Set()
+        colors.add('red')
+        colors.add('green')
+        colors.add('blue')
+
+        colors.add(5)
+        colors.add('5')
+
+        colors.delete('red')
+        console.log(colors.has(5))
+
+
+        for (const color of colors) {
+            console.log(color)
+        }
+        //colors.clear()
+
+
+        const fruits = new Set(['apple', 'banana', 'mongo'])
+
+        const numbers=[1,2,3,4,5,5,5]
+        const numbersSet=new Set(numbers) 
+        const uniqueNumbers=[...numbersSet]  
+    </script>
+</body>
+
+</html>

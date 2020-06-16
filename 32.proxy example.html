@@ -12,10 +12,40 @@
         //1.format
         const phoneHandler = {
             set(target, key, value) {
-                target[key] = value
+                target[key] = value.match(/[0-9]/g).join('')
+            },
+            get(target, key) {
+                return target[key].replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')
             }
         }
         const phoneNumber = new Proxy({}, phoneHandler)
+
+
+        //2.
+        const person = {
+            id: 2
+        }
+        person.ID = 2;
+        person.iD = 2;
+        person.Id = 2;
+
+
+        const safeHandler = {
+            set(target, key, value) {
+                const likeKey = Object.keys(target).find(k => k.toLowerCase() === key.toLowerCase())
+                if (!(key in target) && likeKey) {
+                    throw new Error(`Oops!looks like we already have a property ${key} ,but with the case of ${likeKey}`)
+                }
+                target[key] = value
+            }
+        }
+        const safetyProxy = new Proxy({
+            id: 2
+        }, safeHandler)
+
+
+
+        safetyProxy.ID = 5
     </script>
 </body>
 
